@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>User Orders</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f3f6;
+      margin: 0;
+      
+    }
+
+    h1 {
+      color: #2874f0;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    #order-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .order-box {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #2874f0;
+    }
+
+    .order-box h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .order-box p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    select {
+      padding: 6px;
+      margin-top: 6px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px dashed #ddd;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    .product img {
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .product p {
+      margin: 0;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 bg-blue-500 right-0 bg-primary z-50 h-20 will-change-transform"
+    style="backface-visibility: hidden; transform-style: preserve-3d">
+    <div class="flex items-center justify-between px-4 h-full">
+      <!-- Logo with Text -->
+      <!-- Logo with Text -->
+      <div class="flex items-center space-x-2 w-auto  cursor-pointer" onclick="window.location.href='index.html'">
+        <img class="w-10 h-10 object-contain" src="./image/logo.png" alt="KavyaKart Logo">
+        <h6 class="text-white text-xs sm:text-sm font-['Dancing_Script'] leading-tight">KavyaKart</h6>
+      </div>
+
+      
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6 text-white">
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="showAddForm()">
+          <i class="ri-plus"></i>
+          <span class="text-sm">Add new Product</span>
+        </button>
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="openUserOverlay()">
+          <i class="ri-user-line"></i>
+          <span class="text-sm">Users</span>
+        </button>
+
+        <button class="flex items-center space-x-1 hover:text-gray-200 relative"
+          onclick="window.location.href='order.html'">
+          <i class="ri-shopping-cart-line"></i>
+          <span class="text-sm">Order</span>
+          
+        </button>
+      </div>
+
+      <!-- Mobile Menu Icon -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white text-2xl">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu"
+      class="md:hidden hidden bg-white text-black shadow-lg p-4 absolute top-16 right-4 w-48 rounded z-50">
+      <a onclick="showAddForm()" class="block py-2 hover:text-primary border-b">Add New Product</a>
+      <a onclick="openUserOverlay()" class="block py-2 hover:text-primary border-b">Users</a>
+      <a href="order.html" class="block py-2 hover:text-primary">Orders</a>
+    </div>
+  </header>
+  <h1 class="mt-24">🛒 User Orders</h1>
+  <div id="order-container">Loading...</div>
+
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-white font-['Pacifico'] text-xl mb-4">
+            <img class="w-16" src="./image/logo.png" alt="" />
+          </div>
+          <p class="text-gray-400 mb-4">
+            Premium audio solutions for every lifestyle. Experience the future
+            of sound with our innovative products.
+          </p>
+          <div class="flex space-x-4">
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-facebook-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-twitter-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-instagram-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Products</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Neckbands</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Wireless Earbuds</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Sports Earphones</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Gaming Headsets</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Support</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Help Center</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Warranty</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Returns</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Subscribe to get updates on new products and exclusive offers.
+          </p>
+          <div class="flex">
+            <input type="email" placeholder="Enter your email"
+              class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l text-sm outline-none focus:border-primary" />
+            <button
+              class="px-4 py-2 bg-primary text-white rounded-r hover:bg-blue-700 transition-colors !rounded-button whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 KavyaKart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+  const menuBtn = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  const urlParams = new URLSearchParams(window.location.search);
+  const uid = urlParams.get("uid");
+
+  async function fetchOrders() {
+    const res = await fetch(`/api/userorders?uid=${uid}`);
+    const userOrders = await res.json();
+
+    const container = document.getElementById("order-container");
+    if (!Array.isArray(userOrders) || userOrders.length === 0) {
+      container.innerHTML = "<p style='color:#999;'>No orders found for this user.</p>";
+      return;
+    }
+
+    container.innerHTML = userOrders.map((order, index) => `
+      <div class="order-box">
+        <h3>Order #${index + 1}</h3>
+        <p><b>Name:</b> ${order.address?.name || "N/A"}</p>
+        <p><b>Phone:</b> ${order.address?.phone || "N/A"}</p>
+        <p><b>City:</b> ${order.address?.city || "N/A"}</p>
+        <p><b>Total:</b> ₹${order.total}</p>
+
+        <label><b>Status:</b></label>
+        <select onchange="updateStatus(${index}, this.value)">
+          <option value="pending" ${order.status === "pending" ? "selected" : ""}>Pending</option>
+          <option value="shipped" ${order.status === "shipped" ? "selected" : ""}>Shipped</option>
+          <option value="delivered" ${order.status === "delivered" ? "selected" : ""}>Delivered</option>
+          <option value="cancelled" ${order.status === "cancelled" ? "selected" : ""}>Cancelled</option>
+        </select>
+
+        <h4 style="margin-top: 15px;">Products:</h4>
+        ${order.products.map(p => `
+          <div class="product">
+            <img src="${p.image}" width="60" />
+            <p><b>${p.title}</b> × ${p.quantity}<br/>₹${p.subtotal.toFixed(2)}</p>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  async function updateStatus(orderIndex, status) {
+    const res = await fetch(`/api/userorders?uid=${uid}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ orderIndex, status })
+    });
+
+    const data = await res.json();
+    if (data.updated) {
+      alert("Status updated!");
+      fetchOrders();
+    } else {
+      alert("Failed to update");
+    }
+  }
+
+  fetchOrders();
+</script>
+
+</body>
+</html>

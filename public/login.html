@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f1f3f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: #2874f0;
+      margin-bottom: 25px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2874f0;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-box button:hover {
+      background-color: #1f5bc1;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 bg-blue-500 right-0 bg-primary z-50 h-20 will-change-transform"
+    style="backface-visibility: hidden; transform-style: preserve-3d">
+    <div class="flex items-center justify-between px-4 h-full">
+      <!-- Logo with Text -->
+      <!-- Logo with Text -->
+      <div class="flex items-center space-x-2 w-auto  cursor-pointer" onclick="window.location.href='index.html'">
+        <img class="w-10 h-10 object-contain" src="./image/logo.png" alt="KavyaKart Logo">
+        <h6 class="text-white text-xs sm:text-sm font-['Dancing_Script'] leading-tight">KavyaKart</h6>
+      </div>
+
+      
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6 text-white">
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="showAddForm()">
+          <i class="ri-plus"></i>
+          <span class="text-sm">Add new Product</span>
+        </button>
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="openUserOverlay()">
+          <i class="ri-user-line"></i>
+          <span class="text-sm">Users</span>
+        </button>
+
+        <button class="flex items-center space-x-1 hover:text-gray-200 relative"
+          onclick="window.location.href='order.html'">
+          <i class="ri-shopping-cart-line"></i>
+          <span class="text-sm">Order</span>
+          
+        </button>
+      </div>
+
+      <!-- Mobile Menu Icon -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white text-2xl">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu"
+      class="md:hidden hidden bg-white text-black shadow-lg p-4 absolute top-16 right-4 w-48 rounded z-50">
+      <a onclick="showAddForm()" class="block py-2 hover:text-primary border-b">Add New Product</a>
+      <a onclick="openUserOverlay()" class="block py-2 hover:text-primary border-b">Users</a>
+      <a href="order.html" class="block py-2 hover:text-primary">Orders</a>
+    </div>
+  </header>
+  <div class="login-box mt-24">
+    <h2>🔐 Admin Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+  </div>
+
+
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-white font-['Pacifico'] text-xl mb-4">
+            <img class="w-16" src="./image/logo.png" alt="" />
+          </div>
+          <p class="text-gray-400 mb-4">
+            Premium audio solutions for every lifestyle. Experience the future
+            of sound with our innovative products.
+          </p>
+          <div class="flex space-x-4">
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-facebook-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-twitter-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-instagram-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Products</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Neckbands</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Wireless Earbuds</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Sports Earphones</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Gaming Headsets</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Support</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Help Center</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Warranty</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Returns</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Subscribe to get updates on new products and exclusive offers.
+          </p>
+          <div class="flex">
+            <input type="email" placeholder="Enter your email"
+              class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l text-sm outline-none focus:border-primary" />
+            <button
+              class="px-4 py-2 bg-primary text-white rounded-r hover:bg-blue-700 transition-colors !rounded-button whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 KavyaKart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        localStorage.setItem("token", data.token); // store JWT
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("error").innerText = "Login failed. Check credentials.";
+      }
+    }
+  </script>
+</body>
+</html>

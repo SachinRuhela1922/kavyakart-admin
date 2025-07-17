@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>All Orders</title>
+  <style>
+    body {
+      margin: 0;
+      
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f3f6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2874f0;
+      margin-bottom: 30px;
+    }
+
+    #orders-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .order {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 340px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #2874f0;
+    }
+
+    .order h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .order p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    select {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .product {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .product img {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+
+    .product strong {
+      font-size: 14px;
+    }
+
+    .product p {
+      font-size: 13px;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 bg-blue-500 right-0 bg-primary z-50 h-20 will-change-transform"
+    style="backface-visibility: hidden; transform-style: preserve-3d">
+    <div class="flex items-center justify-between px-4 h-full">
+      <!-- Logo with Text -->
+      <!-- Logo with Text -->
+      <div class="flex items-center space-x-2 w-auto  cursor-pointer" onclick="window.location.href='index.html'">
+        <img class="w-10 h-10 object-contain" src="./image/logo.png" alt="KavyaKart Logo">
+        <h6 class="text-white text-xs sm:text-sm font-['Dancing_Script'] leading-tight">KavyaKart</h6>
+      </div>
+
+      
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6 text-white">
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="showAddForm()">
+          <i class="ri-plus"></i>
+          <span class="text-sm">Add new Product</span>
+        </button>
+        <button id="accountBtn" class="flex items-center space-x-1 hover:text-gray-200"
+          onclick="openUserOverlay()">
+          <i class="ri-user-line"></i>
+          <span class="text-sm">Users</span>
+        </button>
+
+        <button class="flex items-center space-x-1 hover:text-gray-200 relative"
+          onclick="window.location.href='order.html'">
+          <i class="ri-shopping-cart-line"></i>
+          <span class="text-sm">Order</span>
+          
+        </button>
+      </div>
+
+      <!-- Mobile Menu Icon -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white text-2xl">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu"
+      class="md:hidden hidden bg-white text-black shadow-lg p-4 absolute top-16 right-4 w-48 rounded z-50">
+      <a onclick="showAddForm()" class="block py-2 hover:text-primary border-b">Add New Product</a>
+      <a onclick="openUserOverlay()" class="block py-2 hover:text-primary border-b">Users</a>
+      <a href="order.html" class="block py-2 hover:text-primary">Orders</a>
+    </div>
+  </header>
+  <h1 class="mt-24">📦 All Orders</h1>
+  <div id="orders-container">Loading Orders...</div>
+
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-white font-['Pacifico'] text-xl mb-4">
+            <img class="w-16" src="./image/logo.png" alt="" />
+          </div>
+          <p class="text-gray-400 mb-4">
+            Premium audio solutions for every lifestyle. Experience the future
+            of sound with our innovative products.
+          </p>
+          <div class="flex space-x-4">
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-facebook-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-twitter-fill"></i>
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
+              <i class="ri-instagram-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Products</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Neckbands</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Wireless Earbuds</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Sports Earphones</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Gaming Headsets</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Support</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Help Center</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Warranty</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Returns</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition-colors">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Subscribe to get updates on new products and exclusive offers.
+          </p>
+          <div class="flex">
+            <input type="email" placeholder="Enter your email"
+              class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l text-sm outline-none focus:border-primary" />
+            <button
+              class="px-4 py-2 bg-primary text-white rounded-r hover:bg-blue-700 transition-colors !rounded-button whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 KavyaKart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+    async function fetchOrders() {
+      try {
+        const res = await fetch('/api/orders');
+        const orders = await res.json();
+
+        const container = document.getElementById('orders-container');
+        if (orders.length === 0) {
+          container.innerHTML = '<p style="color:#777;">No orders yet.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+
+        orders.forEach(order => {
+          const div = document.createElement('div');
+          div.className = 'order';
+
+          const address = order.address || {};
+          const products = order.products || [];
+
+          div.innerHTML = `
+            <h3>Order ID: ${order._id}</h3>
+            <p><strong>Name:</strong> ${address.name}</p>
+            <p><strong>Phone:</strong> ${address.phone}</p>
+            <p><strong>Address:</strong> ${address.street}, ${address.city}, ${address.state} - ${address.postalCode}, ${address.country}</p>
+            <p><strong>Status:</strong> 
+              <select onchange="updateStatus('${order._id}', this.value)">
+                <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+              </select>
+            </p>
+            <p><strong>Created At:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+            <p><strong>Total:</strong> ₹${order.total || 0}</p>
+
+            <h4>🛍️ Products:</h4>
+            ${products.map(p => `
+              <div class="product">
+                <img src="${p.image}" width="70" />
+                <strong>${p.title}</strong>
+                <p>Price: ₹${p.price}</p>
+                <p>Qty: ${p.quantity}</p>
+                <p>Subtotal: ₹${p.subtotal.toFixed(2)}</p>
+                <p>Label: ${p.label} | Type: ${p.type}</p>
+              </div>
+            `).join('')}
+          `;
+
+          container.appendChild(div);
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('orders-container').innerText = 'Error loading orders.';
+      }
+    }
+
+    async function updateStatus(orderId, newStatus) {
+      try {
+        const res = await fetch(`/api/orders?id=${orderId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+
+        const result = await res.json();
+        if (result.updated) {
+          alert("Status updated successfully!");
+        } else {
+          alert("Failed to update status.");
+        }
+      } catch (err) {
+        console.error("Status update error:", err);
+        alert("Error updating status.");
+      }
+    }
+
+    fetchOrders();
+  </script>
+</body>
+</html>
